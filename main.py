@@ -48,10 +48,10 @@ def main():
                     )
 
                     message = message_template.format(
-                                                    attempt['lesson_title'],
-                                                    attempt['lesson_url'],
-                                                    attempt_status
-                                               )
+                        attempt['lesson_title'],
+                        attempt['lesson_url'],
+                        attempt_status
+                    )
                 bot.send_message(text=message, chat_id=chat_id)
                 params['timestamp'] = response_body['last_attempt_timestamp']
 
