@@ -16,8 +16,8 @@ pip install -r requirements.txt
 ```
 DVMN_TOKEN=<ВАШ ЛИЧНЫЙ ТОКЕН DVMN>
 POLLING_TIMEOUT=<ТАЙМАУТ НА ОЖИДАНИЕ ОТВЕТА В СЕКУНДАХ>
-BOT_TOKEN=<ТОКЕН ВАШЕГО БОТА В ТЕЛЕГРАМ>
-CHAT_ID=<ВАШ ID В ТЕЛЕГРАМ>
+TG_BOT_TOKEN=<ТОКЕН ВАШЕГО БОТА В ТЕЛЕГРАМ>
+TG_CHAT_ID=<ВАШ ID В ТЕЛЕГРАМ>
 ```
 7. Запустите скрипт командой:
 ```
