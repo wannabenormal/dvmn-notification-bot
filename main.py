@@ -1,4 +1,5 @@
 import os
+import time
 
 import requests
 import telegram
@@ -17,6 +18,8 @@ def main():
     }
 
     tg_bot = telegram.Bot(token=tg_bot_token)
+
+    bad_requests_attempts = 0
 
     while True:
         url = 'https://dvmn.org/api/long_polling/'
@@ -58,6 +61,13 @@ def main():
         except requests.exceptions.ReadTimeout:
             continue
         except requests.exceptions.ConnectionError:
+            bad_requests_attempts += 1
+
+            if bad_requests_attempts == 5:
+                print('Ошибка соеденения. Повторная попытка через 1 мин.')
+                time.sleep(60)
+                bad_requests_attempts = 0
+
             continue
 
 
