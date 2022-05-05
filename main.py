@@ -52,7 +52,7 @@ def main():
                         attempt['lesson_url'],
                         attempt_status
                     )
-                tg_bot.send_message(text=message, chat_id=tg_chat_id)
+                    tg_bot.send_message(text=message, chat_id=tg_chat_id)
                 params['timestamp'] = reviews['last_attempt_timestamp']
 
         except requests.exceptions.ReadTimeout:
