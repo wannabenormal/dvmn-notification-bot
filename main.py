@@ -30,12 +30,12 @@ def main():
                 params=params
             )
             response.raise_for_status()
-            response_body = response.json()
+            reviews = response.json()
 
-            if response_body['status'] == 'timeout':
-                params['timestamp'] = response_body['timestamp_to_request']
+            if reviews['status'] == 'timeout':
+                params['timestamp'] = reviews['timestamp_to_request']
             else:
-                for attempt in response_body['new_attempts']:
+                for attempt in reviews['new_attempts']:
                     attempt_status = (
                         'К сожалению, в работе обнаружились ошибки'
                         if attempt['is_negative']
@@ -53,7 +53,7 @@ def main():
                         attempt_status
                     )
                 tg_bot.send_message(text=message, chat_id=tg_chat_id)
-                params['timestamp'] = response_body['last_attempt_timestamp']
+                params['timestamp'] = reviews['last_attempt_timestamp']
 
         except requests.exceptions.ReadTimeout:
             continue
