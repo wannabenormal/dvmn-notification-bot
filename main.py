@@ -19,7 +19,16 @@ def main():
     }
 
     tg_bot = telegram.Bot(token=tg_bot_token)
-    logging.warning('Бот запущен')
+
+    class LogsHandler(logging.Handler):
+        def emit(self, record):
+            log_entry = self.format(record)
+            tg_bot.send_message(chat_id=tg_chat_id, text=log_entry)
+
+    logger = logging.getLogger('TG_Logger')
+    logger.setLevel(logging.INFO)
+    logger.addHandler(LogsHandler)
+    logging.info('Бот запущен')
 
     bad_requests_attempts = 0
 
@@ -66,11 +75,15 @@ def main():
             bad_requests_attempts += 1
 
             if bad_requests_attempts == 5:
-                print('Ошибка соеденения. Повторная попытка через 1 мин.')
+                logger.warning(
+                    'Ошибка соеденения. Повторная попытка через 1 мин.'
+                )
                 time.sleep(60)
                 bad_requests_attempts = 0
 
             continue
+        except Exception as e:
+            logger.exception(e)
 
 
 if __name__ == '__main__':
