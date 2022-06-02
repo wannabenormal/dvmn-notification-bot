@@ -27,7 +27,7 @@ def main():
 
     logger = logging.getLogger('TG_Logger')
     logger.setLevel(logging.INFO)
-    logger.addHandler(LogsHandler)
+    logger.addHandler(LogsHandler())
     logger.info('Бот запущен')
 
     bad_requests_attempts = 0
