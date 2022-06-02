@@ -1,5 +1,6 @@
 import os
 import time
+import logging
 
 import requests
 import telegram
@@ -18,6 +19,7 @@ def main():
     }
 
     tg_bot = telegram.Bot(token=tg_bot_token)
+    logging.warning('Бот запущен')
 
     bad_requests_attempts = 0
 
