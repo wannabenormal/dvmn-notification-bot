@@ -84,6 +84,8 @@ def main():
             continue
         except Exception as e:
             logger.exception(e)
+            time.sleep(60)
+            continue
 
 
 if __name__ == '__main__':
