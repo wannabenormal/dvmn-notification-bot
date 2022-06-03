@@ -6,6 +6,11 @@ import requests
 import telegram
 from dotenv import load_dotenv
 
+from loggers import TgLogsHandler
+
+
+logger = logging.getLogger('TG_Logger')
+
 
 def main():
     load_dotenv()
@@ -20,14 +25,8 @@ def main():
 
     tg_bot = telegram.Bot(token=tg_bot_token)
 
-    class LogsHandler(logging.Handler):
-        def emit(self, record):
-            log_entry = self.format(record)
-            tg_bot.send_message(chat_id=tg_chat_id, text=log_entry)
-
-    logger = logging.getLogger('TG_Logger')
     logger.setLevel(logging.INFO)
-    logger.addHandler(LogsHandler())
+    logger.addHandler(TgLogsHandler(tg_bot, tg_chat_id))
     logger.info('Бот запущен')
 
     bad_requests_attempts = 0
