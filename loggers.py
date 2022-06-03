@@ -2,7 +2,7 @@ import logging
 
 
 class TgLogsHandler(logging.Handler):
-    def __init__(self, bot, chat_id):
+    def __init__(self, bot, chat_id, level=logging.NOTSET):
         self.bot = bot
         self.chat_id = chat_id
 
