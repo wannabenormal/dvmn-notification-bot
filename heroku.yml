@@ -1,3 +1,7 @@
 build:
   docker:
     bot: Dockerfile
+release:
+  image: bot
+  command:
+    - echo 'Starting notification bot';
