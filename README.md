@@ -33,7 +33,7 @@ python main.py
 docker build . -t works-notifications
 ```
 ```
-docker run -d works-notifications
+docker run --env-file ./.env -d works-notifications
 ```
 Для остановки приложения необходимо сделать следующее:
 1. Узнать ID контейнера:
